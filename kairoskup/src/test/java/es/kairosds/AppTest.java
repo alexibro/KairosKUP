@@ -1,4 +1,4 @@
-package es.kairosds.kairoskup;
+package es.kairosds;
 
 import static org.junit.Assert.assertTrue;
 
