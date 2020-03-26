@@ -46,6 +46,15 @@ public class CommentController {
 
         Optional<Article> article = articleService.findOne(articleId);
         if (article.isPresent()) {
+
+            try{
+                if (!commentService.checkSwearingWords(comment.getMessage())) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+            } catch (NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.GATEWAY_TIMEOUT);
+            }
+
             article.get().addComment(comment);
 
             // Necessary to get comment updated with his Id
