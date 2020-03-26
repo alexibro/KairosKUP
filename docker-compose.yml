@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+              MYSQL_ROOT_PASSWORD: KairosKUP1234
+              MYSQL_DATABASE: kairoskup
+              MYSQL_USER: KairosKUP
+              MYSQL_PASSWORD: KairosKUP1234
+    web:
+        image: alexibro/kairoskup
+        restart: on-failure
+        ports: 
+            - "8080:8080"
+        links:
+            - db
+        depends_on:
+            - db
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://db/kairoskup?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            SPRING_DATASOURCE_USERNAME: KairosKUP
+            SPRING_DATASOURCE_PASSWORD: KairosKUP1234
+    

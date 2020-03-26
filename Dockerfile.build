@@ -1,11 +1,10 @@
 FROM maven as builder
-COPY ../kairoskup /code
+COPY /kairoskup /code
 WORKDIR /code
 RUN mvn -DskipTests=true package
 
 FROM openjdk:8-jre
 COPY --from=builder /code/target/*.jar /app/
-COPY ./run.sh /app/
-RUN chmod 777 /app/run.sh
+WORKDIR /app
 EXPOSE 8080
-CMD ["/app/run.sh"]
+CMD ["java", "-jar", "kairoskup-0.0.1-SNAPSHOT.jar"]
