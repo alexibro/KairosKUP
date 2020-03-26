@@ -22,17 +22,17 @@ public class User {
     private String passwordHash;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    private Set<String> roles;
 
     public User() {
-        this.roles = new ArrayList<>();
+        this.roles = new HashSet<>();
         this.roles.add("USER");
     }
 
     public User(String name, String password, String... roles) {
         this.name = name;
         this.passwordHash = new BCryptPasswordEncoder().encode(password);
-        this.roles = new ArrayList<>(Arrays.asList(roles));
+        this.roles = new HashSet<>(Arrays.asList(roles));
         this.roles.add("USER");
     }
 
@@ -60,11 +60,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public List<String> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 }

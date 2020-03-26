@@ -18,14 +18,19 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.antMatcher("/api/**");
+        http.antMatcher("/**");
 
 		// User
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/login").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/login").permitAll();
 
         // Articles
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/articles").authenticated();
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/articles/{id}").authenticated();
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/articles/{id}").authenticated();
 
         // Comments
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/articles/{articleId}/comments/{id}").authenticated();
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/articles/{articleId}/comments/{id}").authenticated();
 
         // Other URLs can be accessed without authentication
         http.authorizeRequests().anyRequest().permitAll();
