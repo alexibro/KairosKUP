@@ -61,7 +61,7 @@ public class CommentController {
             comment = commentService.save(comment);
 
             articleService.save(article.get());
-            return new ResponseEntity<>(comment, HttpStatus.OK);
+            return new ResponseEntity<>(comment, HttpStatus.CREATED);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,6 +76,14 @@ public class CommentController {
         Optional<Comment> oldComment = commentService.findOne(id);
 
         if (article.isPresent() && oldComment.isPresent()) {
+
+            try{
+                if (!commentService.checkSwearingWords(updatedComment.getMessage())) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+            } catch (NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.GATEWAY_TIMEOUT);
+            }
 
             updatedComment.setId(id);
             article.get().updateComments(oldComment.get(), updatedComment);
