@@ -27,7 +27,8 @@ public class User {
     public User() {
         this.roles = new HashSet<>();
         this.roles.add("USER");
-        this.name = null;
+        this.name = "null";
+        this.passwordHash = "null";
     }
 
     public User(String name, String password, String... roles) {

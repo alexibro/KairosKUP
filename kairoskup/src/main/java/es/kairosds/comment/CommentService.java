@@ -18,8 +18,8 @@ public class CommentService {
     @Autowired
     private Environment env;
 
-    private static String SWEARING_API_HOST = "http://localhost";
-    private static String SWEARING_API_PORT = "8080";
+    private String SwearingApiHost = "http://localhost";
+    private String SwearingApiPort = "8080";
 
     private static class Request {
         String comment;
@@ -40,7 +40,7 @@ public class CommentService {
     public boolean checkSwearingWords(String comment) {
         RestTemplate restTemplate = new RestTemplate();
         this.initEnvironment();
-        String SWEARING_API_URL = SWEARING_API_HOST + ":" + SWEARING_API_PORT + "/check";
+        String SWEARING_API_URL = SwearingApiHost + ":" + SwearingApiPort + "/check";
 
         HttpEntity<Request> request = new HttpEntity<>(new Request(comment));
         String response = restTemplate.postForObject(SWEARING_API_URL, request, String.class);
@@ -76,12 +76,12 @@ public class CommentService {
     private void initEnvironment() {
         String host = env.getProperty("DOCKER_INTERNAL_HOST");
         if (host != null && !host.equals("")) {
-            SWEARING_API_HOST = host;
+            SwearingApiHost = host;
         }
 
         String port = env.getProperty("SWEARING_API_PORT");
         if (port != null && !port.equals("")) {
-            SWEARING_API_PORT = port;
+            SwearingApiPort = port;
         }
     }
 }
