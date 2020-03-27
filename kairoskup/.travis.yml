@@ -1,0 +1,14 @@
+language: java
+
+services:
+  - docker
+  - maven
+
+script:
+
+  # Build with docker compose
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose build; fi
+
+  # Push to Docker Hub
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose push; fi
