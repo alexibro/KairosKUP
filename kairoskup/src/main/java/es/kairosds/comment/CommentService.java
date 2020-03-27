@@ -1,14 +1,12 @@
 package es.kairosds.comment;
 
+import es.kairosds.App;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,7 +15,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    private String swearingApiUrl = "http://localhost:8000/check";
+    public String SWEARING_API_HOST = "http://localhost";
+    public String SWEARING_API_PORT = "8000";
 
     private static class Request {
         String comment;
@@ -53,9 +52,11 @@ public class CommentService {
 
     public boolean checkSwearingWords(String comment) throws NullPointerException {
         RestTemplate restTemplate = new RestTemplate();
+        this.initEnvironment();
+        String SWEARING_API_URL = SWEARING_API_HOST + ":" + SWEARING_API_PORT + "/check";
 
         HttpEntity<Request> request = new HttpEntity<>(new Request(comment));
-        String response = restTemplate.postForObject(swearingApiUrl, request, String.class);
+        String response = restTemplate.postForObject(SWEARING_API_URL, request, String.class);
 
 
         if (response != null) {
@@ -83,5 +84,17 @@ public class CommentService {
 
     public void delete(long id) {
         commentRepository.deleteById(id);
+    }
+
+    private void initEnvironment() {
+        String host = System.getenv("DOCKER_INTERNAL_HOST");
+        if (host != null && !host.equals("")) {
+            SWEARING_API_HOST = host;
+        }
+
+        String port = System.getenv("SWEARING_API_PORT");
+        if (port != null && !port.equals("")) {
+            SWEARING_API_PORT = port;
+        }
     }
 }

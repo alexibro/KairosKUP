@@ -39,6 +39,8 @@ services:
             SPRING_DATASOURCE_URL: jdbc:mysql://db/kairoskup?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             SPRING_DATASOURCE_USERNAME: KairosKUP
             SPRING_DATASOURCE_PASSWORD: KairosKUP1234
+            DOCKER_INTERNAL_HOST: http://host.docker.internal
+            SWEARING_API_PORT: 8000
 
 networks:
     internal_network:
