@@ -6,6 +6,10 @@ services:
 
 script:
 
+  # Tests
+  - cd kairoskup
+  - mvn test
+
   # Build with docker compose
   - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose build; fi
 
