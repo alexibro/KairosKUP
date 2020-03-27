@@ -6,18 +6,9 @@ services:
 
 script:
 
-  # Tests
-  - cd kairoskup
-  - mvn test
-
-  # Build main API: KairosKUP
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker build -t "$DOCKER_USERNAME"/kairoskup .; fi
-
-  # Build secondary API: Swearing words
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then cd ../swearingAPI
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker build -t "$DOCKER_USERNAME"/swearingapi .; fi
+  # Build with docker compose
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose build; fi
 
   # Push to Docker Hub
   - if [ "$TRAVIS_BRANCH" = "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker push "$DOCKER_USERNAME"/kairoskup; fi
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker push "$DOCKER_USERNAME"/swearingapi; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose push; fi
