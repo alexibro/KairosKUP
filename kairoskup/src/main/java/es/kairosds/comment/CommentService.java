@@ -1,7 +1,7 @@
 package es.kairosds.comment;
 
-import es.kairosds.App;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +15,11 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private Environment env;
+
     public String SWEARING_API_HOST = "http://localhost";
-    public String SWEARING_API_PORT = "8000";
+    public String SWEARING_API_PORT = "8080";
 
     private static class Request {
         String comment;
@@ -87,12 +90,12 @@ public class CommentService {
     }
 
     private void initEnvironment() {
-        String host = System.getenv("DOCKER_INTERNAL_HOST");
+        String host = env.getProperty("DOCKER_INTERNAL_HOST");
         if (host != null && !host.equals("")) {
             SWEARING_API_HOST = host;
         }
 
-        String port = System.getenv("SWEARING_API_PORT");
+        String port = env.getProperty("SWEARING_API_PORT");
         if (port != null && !port.equals("")) {
             SWEARING_API_PORT = port;
         }

@@ -20,7 +20,7 @@ services:
         networks: 
             - internal_network
         ports: 
-            - "8000:8000" 
+            - "8080:8080" 
 
     kairoskup:
         build:
@@ -29,7 +29,7 @@ services:
         image: alexibro/kairoskup
         restart: on-failure
         ports: 
-            - "8080:8080"
+            - "8443:8443"
         networks:
             - internal_network
         depends_on:
@@ -40,7 +40,7 @@ services:
             SPRING_DATASOURCE_USERNAME: KairosKUP
             SPRING_DATASOURCE_PASSWORD: KairosKUP1234
             DOCKER_INTERNAL_HOST: http://host.docker.internal
-            SWEARING_API_PORT: 8000
+            SWEARING_API_PORT: 8080
 
 networks:
     internal_network:
