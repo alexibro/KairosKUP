@@ -1,3 +1,1 @@
 KairosKUP
-
-Init Sonar

@@ -2,24 +2,43 @@ version: "3"
 
 services:
     db:
-        image: mysql
+        image: mysql:8.0
         command: --default-authentication-plugin=mysql_native_password
+        networks:
+            - internal_network
         environment:
               MYSQL_ROOT_PASSWORD: KairosKUP1234
               MYSQL_DATABASE: kairoskup
               MYSQL_USER: KairosKUP
               MYSQL_PASSWORD: KairosKUP1234
-    web:
+
+    swearingapi:
+        build:
+            context: ./swearingAPI
+            dockerfile: Dockerfile
+        image: alexibro/swearingapi
+        networks: 
+            - internal_network
+        ports: 
+            - "8000:8000" 
+
+    kairoskup:
+        build:
+            context: ./kairoskup
+            dockerfile: Dockerfile
         image: alexibro/kairoskup
         restart: on-failure
         ports: 
             - "8080:8080"
-        links:
-            - db
+        networks:
+            - internal_network
         depends_on:
             - db
+            - swearingapi
         environment:
             SPRING_DATASOURCE_URL: jdbc:mysql://db/kairoskup?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             SPRING_DATASOURCE_USERNAME: KairosKUP
             SPRING_DATASOURCE_PASSWORD: KairosKUP1234
-    
+
+networks:
+    internal_network:
