@@ -12,3 +12,13 @@ script:
   # Push to Docker Hub
   - if [ "$TRAVIS_BRANCH" = "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
   - if [ "$TRAVIS_BRANCH" = "master" ]; then docker-compose push; fi
+
+  addons:
+    sonarcloud:
+      organization: "alexibro-github"
+      token:
+        secure: "sYPRrPlpoUs/ZRXB1nU9S2tblrsPlFgD7F7pRYgz4OgPlDxbqJeeTPEijwVa1lk/DxBmuavC7FOf2WO2/FpFpry36Ap2I/izRvYg0w0kpGMSa25ynqIFfegk9rQBnqul6rQS0iE5RMcRvpTygk+edL+Glo9jxybLK9N6ERShefIK81LG6aB5yja9fcZTIg3CWkaCT4VssbC9OI4n24lODaUYN5qUeKyhxsIOJTK53QjAYM3F+Hd8AjYLGZi8+r3wRyOGWwtOX3uEKD4oixvE6Z4ke3hdpkue6+TX85nFlfufHQjgrgY3b+8QwLve4BXnfG33GNrUtzTC/32w7TTnU/OTX4vG3h56GaMNTVoeDYL4OtouhZTyzN5Z5D+/+lgif9pFj7DM6NTQh91fyGS0zLpB9/EDu5y92TX95mbuaBiUkxhKMYRKNs3zt8vdhYdDQ9AWUbU1AXy9oQVuFH7BiDqzIDT21E1ley5ZsvDEGxO1djn4uDFtedadpvMIiAiQNPzw6/XhZAXp1C9+aiRuIKSnzFVOcPRLqlcGlOBbFKTOIzlA4gnYVZpCRi9DaCM53YVQl8Gob8MUAFfrxAQak+FhUxQLyYRoRUQn8RgRgXXr3s/hENCOl5t3eT058LNJHUkiYvhxaSY4JKPXCbV+NoE+/2WDuknhzeGw0hoW79I="
+  
+  script:
+    # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
