@@ -8,8 +8,7 @@
   <artifactId>kairoskup</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>kairoskup</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://localhost:8443/</url>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -24,6 +23,11 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <start-class>es.kairosds.App</start-class>
+
+    <sonar.projectKey>alexibro_KairosKUP</sonar.projectKey>
+  <sonar.organization>alexibro-github</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  <sonar.login>a2708b104c1245d61fefb73aeab3162f32225599</sonar.login>
   </properties>
 
   <dependencies>

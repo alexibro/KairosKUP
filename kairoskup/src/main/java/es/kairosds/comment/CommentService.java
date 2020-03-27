@@ -18,8 +18,8 @@ public class CommentService {
     @Autowired
     private Environment env;
 
-    public String SWEARING_API_HOST = "http://localhost";
-    public String SWEARING_API_PORT = "8080";
+    private static String SWEARING_API_HOST = "http://localhost";
+    private static String SWEARING_API_PORT = "8080";
 
     private static class Request {
         String comment;
@@ -37,23 +37,7 @@ public class CommentService {
         }
     }
 
-    private static class Response {
-        String response;
-
-        Response(String response) {
-            this.response = response;
-        }
-
-        public String getResponse() {
-            return response;
-        }
-
-        public void setResponse(String response) {
-            this.response = response;
-        }
-    }
-
-    public boolean checkSwearingWords(String comment) throws NullPointerException {
+    public boolean checkSwearingWords(String comment) {
         RestTemplate restTemplate = new RestTemplate();
         this.initEnvironment();
         String SWEARING_API_URL = SWEARING_API_HOST + ":" + SWEARING_API_PORT + "/check";

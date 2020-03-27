@@ -26,7 +26,7 @@ public class LoginController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             User loggedUser = userComponent.getLoggedUser();
-            log.info("Logged as " + loggedUser.getName());
+            log.info(String.format("Logged as %s", loggedUser.getName()));
             return new ResponseEntity<>(loggedUser, HttpStatus.OK);
         }
     }
@@ -42,22 +42,4 @@ public class LoginController {
             return new ResponseEntity<>(true, HttpStatus.OK);
         }
     }
-
-    /*@PostMapping(value="/signup")
-    public ResponseEntity<User> signup(@RequestParam("name") String name, @RequestParam("authdata") String password) {
-
-        User findUser = userRepository.findByName(name);
-
-        //If the user is already sign in or already exists
-        if((userComponent.getLoggedUser() != null || findUser != null) && !userComponent.isAdmin()){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
-        User user = new User();
-        user.setName(name);
-        user.setPasswordHash(password);
-        userRepository.save(user);
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }*/
 }
