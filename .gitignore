@@ -23,18 +23,40 @@
 
 ### STS ###
 .apt_generated
+kairoskup/.apt_generated
+swearingAPI/.apt_generated
 .classpath
+kairoskup/.classpath
+swearingAPI/.classpath
 .factorypath
+kairoskup/.factorypath
+swearingAPI/.factorypath
 .project
+kairoskup/.project
+swearingAPI/.project
 .settings
+kairoskup/.settings
+swearingAPI/.settings
 .springBeans
+kairoskup/.springBeans
+swearingAPI/.springBeans
 .sts4-cache
+kairoskup/.sts4-cache
+swearingAPI/.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
+kairoskup/.idea
+swearingAPI/.idea
 *.iws
+kairoskup/*.iws
+swearingAPI/*.iws
 *.iml
+kairoskup/*.iml
+swearingAPI/*.iml
 *.ipr
+kairoskup/*.ipr
+swearingAPI/*.ipr
 
 ### NetBeans ###
 /nbproject/private/
