@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.kairosds.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.277 s - in es.kairosds.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.272 s - in es.kairosds.AppTest
