@@ -1,4 +1,6 @@
 .DS_Store
+kairoskup/target
+swearingAPI/target
 
 # Compiled class file
 *.class
