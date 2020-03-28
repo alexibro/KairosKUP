@@ -17,7 +17,6 @@ public class User {
     @NotNull
     private String name;
 
-    @NotNull
     @JsonIgnore
     private String passwordHash;
 
@@ -28,7 +27,6 @@ public class User {
         this.roles = new HashSet<>();
         this.roles.add("USER");
         this.name = "null";
-        this.passwordHash = "null";
     }
 
     public User(String name, String password, String... roles) {
