@@ -25,9 +25,9 @@
     <start-class>es.kairosds.App</start-class>
 
     <sonar.projectKey>alexibro_KairosKUP</sonar.projectKey>
-  <sonar.organization>alexibro-github</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  <sonar.login>a2708b104c1245d61fefb73aeab3162f32225599</sonar.login>
+    <sonar.organization>alexibro-github</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.login>a2708b104c1245d61fefb73aeab3162f32225599</sonar.login>
   </properties>
 
   <dependencies>
