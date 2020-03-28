@@ -1,5 +1,6 @@
 .DS_Store
 kairoskup/target
+kairoskup/src/main/resources/*.jks
 swearingAPI/target
 
 # Compiled class file
