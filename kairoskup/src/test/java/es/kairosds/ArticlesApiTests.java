@@ -1,6 +1,6 @@
 package es.kairosds;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import es.kairosds.article.Article;
 import es.kairosds.article.ArticleService;
 import org.junit.Before;
@@ -36,6 +36,8 @@ public class ArticlesApiTests {
 
     @MockBean
     private ArticleService articleService;
+
+    private Gson jsonParser = new Gson();
 
     @Before
     public void initialize() {
@@ -77,24 +79,20 @@ public class ArticlesApiTests {
     @Test
     public void testCreateArticle() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(article);
 
         mvc.perform(MockMvcRequestBuilders.post("/articles")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(article)))
                 .andExpect(status().isCreated());
     }
 
     @Test
     public void testUpdateArticle() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(article);
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(article)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.authorName", is("Test2")));;
     }
@@ -102,12 +100,10 @@ public class ArticlesApiTests {
     @Test
     public void testUpdateArticleNotFound() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(article);
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/2")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(article)))
                 .andExpect(status().isNotFound());
     }
 

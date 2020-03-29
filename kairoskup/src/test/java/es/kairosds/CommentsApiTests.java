@@ -1,5 +1,6 @@
 package es.kairosds;
 
+import com.google.gson.Gson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.kairosds.article.Article;
 import es.kairosds.article.ArticleService;
@@ -38,6 +39,8 @@ public class CommentsApiTests {
 
     @MockBean
     private CommentService commentService;
+
+    private Gson jsonParser = new Gson();
 
     @Before
     public void initialize() {
@@ -110,12 +113,10 @@ public class CommentsApiTests {
     @Test
     public void testUpdateComment() throws Exception {
         Comment comment = new Comment("Test", "Test3");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(comment);
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/1/comments/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(comment)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.author", is("Test")))
                 .andExpect(jsonPath("$.message", is("Test3")));
@@ -124,12 +125,10 @@ public class CommentsApiTests {
     @Test
     public void testUpdateCommentNotFound() throws Exception {
         Comment comment = new Comment("Test", "Test3");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(comment);
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/1/comments/3")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(comment)))
                 .andExpect(status().isNotFound());
     }
 
