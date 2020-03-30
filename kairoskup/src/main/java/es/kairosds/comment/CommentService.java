@@ -1,10 +1,8 @@
 package es.kairosds.comment;
 
+import es.kairosds.swearingapi.SwearingApiMiddleware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,41 +14,10 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     @Autowired
-    private Environment env;
-
-    private String swearingApiHost = "http://localhost";
-    private String swearingApiPort = "8080";
-
-    private static class Request {
-        String comment;
-
-        public Request(String comment) {
-            this.comment = comment;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(String comment) {
-            this.comment = comment;
-        }
-    }
+    private SwearingApiMiddleware swearingApiMiddleware;
 
     public boolean checkSwearingWords(String comment) {
-        RestTemplate restTemplate = new RestTemplate();
-        this.initEnvironment();
-        String swearingApiUrl = swearingApiHost + ":" + swearingApiPort + "/check";
-
-        HttpEntity<Request> request = new HttpEntity<>(new Request(comment));
-        String response = restTemplate.postForObject(swearingApiUrl, request, String.class);
-
-
-        if (response != null) {
-            return !response.contains("invalid");
-        } else {
-            throw new NullPointerException();
-        }
+        return swearingApiMiddleware.checkSwearingWords(comment);
     }
 
     public List<Comment> findAll() {
@@ -71,17 +38,5 @@ public class CommentService {
 
     public void delete(long id) {
         commentRepository.deleteById(id);
-    }
-
-    private void initEnvironment() {
-        String host = env.getProperty("DOCKER_INTERNAL_HOST");
-        if (host != null && !host.equals("")) {
-            swearingApiHost = host;
-        }
-
-        String port = env.getProperty("SWEARING_API_PORT");
-        if (port != null && !port.equals("")) {
-            swearingApiPort = port;
-        }
     }
 }
