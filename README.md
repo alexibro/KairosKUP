@@ -108,7 +108,7 @@ POST /check
 
 BODY: 
 { 
-   "request": "lechugino"
+   "request": "lechuguino"
 }
 ```
 
