@@ -174,7 +174,7 @@ It has a Postman collection which contains **15 integration tests** that ensure 
 
 ### Continuous Integration [![Build Status](https://travis-ci.com/alexibro/KairosKUP.svg?branch=master)](https://travis-ci.com/alexibro/KairosKUP)
 
-**Travis CI** tool has been used it. Every commit it runs next steps:
+**Travis CI** tool has been used it. Every commit runs next steps:
 
 * **Builds kairoskup (Blog API) image.**
 * **Execute all the kairoskup tests**
