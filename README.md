@@ -181,8 +181,10 @@ It has a Postman collection which contains **15 integration tests** that ensure 
 * **Builds swearingAPI image.**
 * **Push kairoskup and swearingAPI images to Docker Hub**
 
-      [Docker Hub - alexibro/kairoskup](https://hub.docker.com/repository/docker/alexibro/kairoskup)
-      [Docker Hub - alexibro/swearingAPI](https://hub.docker.com/repository/docker/alexibro/swearingapi)
+
+[Docker Hub - alexibro/kairoskup](https://hub.docker.com/repository/docker/alexibro/kairoskup)
+
+[Docker Hub - alexibro/swearingAPI](https://hub.docker.com/repository/docker/alexibro/swearingapi)
       
 ### Sonar [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alexibro_KairosKUP&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexibro_KairosKUP)
 
