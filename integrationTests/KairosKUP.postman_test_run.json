@@ -1,0 +1,421 @@
+{
+	"id": "356e9a0d-1df8-42dc-8beb-3a7cc9316297",
+	"name": "KairosKUP",
+	"timestamp": "2020-03-30T10:54:33.677Z",
+	"collection_id": "32e5eb86-980c-423a-bb41-b648da567fe2",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 13,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "326b679d-a7d8-4298-a78e-654d8daff725",
+			"name": "Login",
+			"url": "https://localhost:8443/login",
+			"time": 444,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				444
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "979994aa-0177-43de-8abb-686d11f1af2e",
+			"name": "GetArticle",
+			"url": "https://localhost:8443/articles/1",
+			"time": 55,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				55
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e4631a7a-1a27-432a-9569-f2f6a929a680",
+			"name": "GetArticles",
+			"url": "https://localhost:8443/articles",
+			"time": 18,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "dc32c991-ca34-41e4-ab0a-e07039816dcd",
+			"name": "CreateArticle",
+			"url": "https://localhost:8443/articles",
+			"time": 69,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				69
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "6c6f4087-5bb3-464e-838f-51dd626949b8",
+			"name": "UpdateArticle",
+			"url": "https://localhost:8443/articles/1",
+			"time": 49,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				49
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "743d54e9-e085-44ad-a3fe-d28609a91ef0",
+			"name": "DeleteArticle",
+			"url": "https://localhost:8443/articles/2",
+			"time": 26,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "30bff757-fbf5-40c4-9a33-c00edb21176d",
+			"name": "GetComment",
+			"url": "https://localhost:8443/articles/1/comments/1",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "2e8ce18e-63f0-44a8-bfbc-c574eb65b05a",
+			"name": "GetComments",
+			"url": "https://localhost:8443/articles/1/comments",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "3ec6a287-2478-4e5b-8d1c-ffe729afc66a",
+			"name": "CreateComment - SwearingAPI",
+			"url": "https://localhost:8443/articles/1/comments",
+			"time": 402,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				402
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "d0cc46ac-a244-427e-a080-1ce1db0e8d25",
+			"name": "Create Invalid Comment - SwearingAPI",
+			"url": "https://localhost:8443/articles/1/comments",
+			"time": 36,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "515fd252-594f-4d88-927b-6a755a32cb15",
+			"name": "UpdateComment - SwearingAPI",
+			"url": "https://localhost:8443/articles/1/comments/1",
+			"time": 87,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "de6b80e1-02ed-40a2-9f5f-72f84d2fb1fc",
+			"name": "DeleteComments",
+			"url": "https://localhost:8443/articles/1/comments/2",
+			"time": 41,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				41
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "cf85bd52-7fb6-433a-84e5-1145847ae7ab",
+			"name": "Logout",
+			"url": "https://localhost:8443/logout",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1276,
+	"collection": {
+		"requests": [
+			{
+				"id": "326b679d-a7d8-4298-a78e-654d8daff725",
+				"method": "POST"
+			},
+			{
+				"id": "979994aa-0177-43de-8abb-686d11f1af2e",
+				"method": "GET"
+			},
+			{
+				"id": "e4631a7a-1a27-432a-9569-f2f6a929a680",
+				"method": "GET"
+			},
+			{
+				"id": "dc32c991-ca34-41e4-ab0a-e07039816dcd",
+				"method": "POST"
+			},
+			{
+				"id": "6c6f4087-5bb3-464e-838f-51dd626949b8",
+				"method": "PUT"
+			},
+			{
+				"id": "743d54e9-e085-44ad-a3fe-d28609a91ef0",
+				"method": "DELETE"
+			},
+			{
+				"id": "30bff757-fbf5-40c4-9a33-c00edb21176d",
+				"method": "GET"
+			},
+			{
+				"id": "2e8ce18e-63f0-44a8-bfbc-c574eb65b05a",
+				"method": "GET"
+			},
+			{
+				"id": "3ec6a287-2478-4e5b-8d1c-ffe729afc66a",
+				"method": "POST"
+			},
+			{
+				"id": "d0cc46ac-a244-427e-a080-1ce1db0e8d25",
+				"method": "POST"
+			},
+			{
+				"id": "515fd252-594f-4d88-927b-6a755a32cb15",
+				"method": "PUT"
+			},
+			{
+				"id": "de6b80e1-02ed-40a2-9f5f-72f84d2fb1fc",
+				"method": "DELETE"
+			},
+			{
+				"id": "cf85bd52-7fb6-433a-84e5-1145847ae7ab",
+				"method": "DELETE"
+			}
+		]
+	}
+}

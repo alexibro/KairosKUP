@@ -1,7 +1,6 @@
-package es.kairosds;
+package es.kairosds.controller;
 
 import com.google.gson.Gson;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import es.kairosds.article.Article;
 import es.kairosds.article.ArticleService;
 import es.kairosds.comment.Comment;
@@ -21,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "USER")
-public class CommentsApiTests {
+public class CommentControllerTests {
 
     @Autowired
     private MockMvc mvc;
@@ -42,6 +42,10 @@ public class CommentsApiTests {
 
     private Gson jsonParser = new Gson();
 
+    /**
+     *  "lechuguino" word is the test swearing word, which is going to be checked as invalid
+     */
+
     @Before
     public void initialize() {
         Article article = new Article("Test", "Test", "Test1", "Test", "Test");
@@ -52,6 +56,7 @@ public class CommentsApiTests {
 
         given(articleService.findOne(1)).willReturn(Optional.of(article));
         given(articleService.exists(1)).willReturn(true);
+        given(articleService.save(any(Article.class))).willReturn(article);
 
         given(commentService.findOne(1)).willReturn(Optional.of(comment1));
         given(commentService.findOne(2)).willReturn(Optional.of(comment2));
@@ -59,10 +64,11 @@ public class CommentsApiTests {
         given(commentService.findAll()).willReturn(article.getComments());
         given(commentService.checkSwearingWords("lechuguino")).willReturn(false);
         given(commentService.checkSwearingWords("Test3")).willReturn(true);
+        given(commentService.save(any(Comment.class))).willReturn(comment1);
     }
 
     @Test
-    public void testGetComments() throws Exception {
+    public void shouldGetComments() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/articles/1/comments")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -71,7 +77,7 @@ public class CommentsApiTests {
     }
 
     @Test
-    public void testGetComment() throws Exception {
+    public void shouldGetComment() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/articles/1/comments/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -80,38 +86,34 @@ public class CommentsApiTests {
     }
 
     @Test
-    public void testGetCommentNotFound() throws Exception {
+    public void shouldNotFoundComment() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/articles/1/comments/3")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testCreateComment() throws Exception {
+    public void shouldCreateComment() throws Exception {
         Comment comment = new Comment("Test3", "Test3");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(comment);
 
         mvc.perform(MockMvcRequestBuilders.post("/articles/1/comments")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(comment)))
                 .andExpect(status().isCreated());
     }
 
     @Test
-    public void testCreateInvalidComment() throws Exception {
+    public void shouldTryToCreateInvalidCommentAndReturnBadRequest() throws Exception {
         Comment comment = new Comment("Test3", "lechuguino");
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(comment);
 
         mvc.perform(MockMvcRequestBuilders.post("/articles/1/comments")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
+                .content(jsonParser.toJson(comment)))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void testUpdateComment() throws Exception {
+    public void shouldUpdateComment() throws Exception {
         Comment comment = new Comment("Test", "Test3");
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/1/comments/1")
@@ -123,7 +125,7 @@ public class CommentsApiTests {
     }
 
     @Test
-    public void testUpdateCommentNotFound() throws Exception {
+    public void shouldNotFoundCommentToUpdate() throws Exception {
         Comment comment = new Comment("Test", "Test3");
 
         mvc.perform(MockMvcRequestBuilders.put("/articles/1/comments/3")
@@ -133,7 +135,7 @@ public class CommentsApiTests {
     }
 
     @Test
-    public void testDeleteComment() throws Exception {
+    public void shouldDeleteComment() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/articles/1/comments/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -141,7 +143,7 @@ public class CommentsApiTests {
     }
 
     @Test
-    public void testDeleteCommentNotFound() throws Exception {
+    public void shouldNotFoundCommentToDelete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/articles/1/comments/3")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());

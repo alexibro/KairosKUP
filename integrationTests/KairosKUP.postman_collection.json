@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76401442-94ca-4abf-88b8-46c976a8ebcf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -45,6 +59,20 @@
 		},
 		{
 			"name": "GetArticle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "942a9093-13ba-4e3e-bdb7-be52233eb647",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -63,16 +91,28 @@
 		},
 		{
 			"name": "GetArticles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "351048bc-8b2e-498a-a237-7d596b3d7d06",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/articles",
-					"protocol": "https",
+					"raw": "{{BASE_URL}}/articles",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8443",
 					"path": [
 						"articles"
 					]
@@ -82,6 +122,20 @@
 		},
 		{
 			"name": "CreateArticle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a08ea8e-df09-4b05-bbe6-d51404e951b3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(201); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -114,6 +168,20 @@
 		},
 		{
 			"name": "UpdateArticle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "94c5c5b2-8abf-4690-98e0-ae44d1ba6584",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -147,6 +215,20 @@
 		},
 		{
 			"name": "DeleteArticle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a327d030-adb2-4bdf-bc7b-6c8e462b8a53",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -165,6 +247,20 @@
 		},
 		{
 			"name": "GetComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5cb12f0-9627-4443-8b3d-161e3d78a424",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -185,6 +281,20 @@
 		},
 		{
 			"name": "GetComments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e762e2b2-f694-485f-919e-15b7a618f106",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -204,6 +314,20 @@
 		},
 		{
 			"name": "CreateComment - SwearingAPI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3153d34a-9339-4904-a603-37657a2034b7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(201); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -238,6 +362,20 @@
 		},
 		{
 			"name": "Create Invalid Comment - SwearingAPI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "373c320a-64fe-4471-8ae3-5cb9a2a15953",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(400); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -272,6 +410,20 @@
 		},
 		{
 			"name": "UpdateComment - SwearingAPI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28ccbcdf-11cb-44a7-8267-9e238d5fec7b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -291,11 +443,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/1/comments/1",
+					"raw": "{{BASE_URL}}/articles/1/comments/1",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
+						"articles",
 						"1",
 						"comments",
 						"1"
@@ -306,6 +459,20 @@
 		},
 		{
 			"name": "DeleteComments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "66b5aade-1d91-463d-831e-e7e6ed2600e0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -326,6 +493,20 @@
 		},
 		{
 			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de6ae343-3be7-497b-b616-6f0519922ad9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -343,6 +524,20 @@
 		},
 		{
 			"name": "SwearingAPI - Check = INVALID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b29809ca-5444-4db2-843c-6fdff48de768",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(201); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -362,12 +557,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/check",
+					"raw": "http://localhost:8080/check",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8080",
 					"path": [
 						"check"
 					]
@@ -377,6 +572,20 @@
 		},
 		{
 			"name": "SwearingAPI - Check = VALID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e2b3ca7-f0c7-4a4c-8219-453fa6464096",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { ",
+							"    pm.response.to.have.status(400); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -396,12 +605,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/check",
+					"raw": "http://localhost:8080/check",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8080",
 					"path": [
 						"check"
 					]
@@ -434,7 +643,7 @@
 	],
 	"variable": [
 		{
-			"id": "edac69e6-5fc7-466d-8804-742a004ae4cd",
+			"id": "733f8ede-07c2-46b3-b163-3fd26e3319ef",
 			"key": "BASE_URL",
 			"value": "https://localhost:8443",
 			"type": "string"

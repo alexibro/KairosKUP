@@ -1,4 +1,4 @@
-package es.kairosds;
+package es.kairosds.integration;
 
 import com.google.gson.Gson;
 import es.kairosds.article.Article;
@@ -9,60 +9,52 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "USER")
-public class ArticlesApiTests {
+public class ArticleApiTests {
 
     @Autowired
     private MockMvc mvc;
 
-    @MockBean
+    @Autowired
     private ArticleService articleService;
+
+    private static long notFoundId = 100;
+    private long lastArticleInsertedId;
 
     private Gson jsonParser = new Gson();
 
     @Before
     public void initialize() {
         Article article1 = new Article("Test", "Test", "Test1", "Test", "Test");
-        List<Article> articles = new ArrayList<>();
-        articles.add(article1);
-
-        given(articleService.findAll()).willReturn(articles);
-        given(articleService.findOne(1)).willReturn(Optional.of(article1));
-        given(articleService.findOne(2)).willReturn(Optional.empty());
-        given(articleService.exists(1)).willReturn(true);
-        given(articleService.exists(2)).willReturn(false);
+        Article articleInserted = articleService.save(article1);
+        lastArticleInsertedId = articleInserted.getId();
     }
 
     @Test
-    public void testGetArticles() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles")
+    public void shouldGetArticles() throws Exception {
+        mvc.perform(get("/articles")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].authorName", is("Test")));
+                .andExpect(jsonPath("$[1].authorName", is("Test")));
     }
 
     @Test
-    public void testGetArticle() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles/1")
+    public void shouldGetArticle() throws Exception {
+        Iterable<Article> articles = articleService.findAll();
+        mvc.perform(get("/articles/" + lastArticleInsertedId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.authorName", is("Test")));
@@ -70,27 +62,27 @@ public class ArticlesApiTests {
     }
 
     @Test
-    public void testGetArticleNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/articles/3")
+    public void shouldNotFoundArticle() throws Exception {
+        mvc.perform(get("/articles/" + notFoundId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testCreateArticle() throws Exception {
+    public void shouldCreateArticle() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
 
-        mvc.perform(MockMvcRequestBuilders.post("/articles")
+        mvc.perform(post("/articles")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonParser.toJson(article)))
                 .andExpect(status().isCreated());
     }
 
     @Test
-    public void testUpdateArticle() throws Exception {
+    public void shouldUpdateArticle() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
 
-        mvc.perform(MockMvcRequestBuilders.put("/articles/1")
+        mvc.perform(put("/articles/" + lastArticleInsertedId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonParser.toJson(article)))
                 .andExpect(status().isOk())
@@ -98,26 +90,26 @@ public class ArticlesApiTests {
     }
 
     @Test
-    public void testUpdateArticleNotFound() throws Exception {
+    public void shouldNotFoundArticleToUpdate() throws Exception {
         Article article = new Article("Test2", "Test2", "Test2", "Test2", "Test2");
 
-        mvc.perform(MockMvcRequestBuilders.put("/articles/2")
+        mvc.perform(put("/articles/" + notFoundId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonParser.toJson(article)))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testDeleteArticle() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete("/articles/1")
+    public void shouldDeleteArticle() throws Exception {
+        mvc.perform(delete("/articles/" + lastArticleInsertedId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.authorName", is("Test")));
     }
 
     @Test
-    public void testDeleteArticleNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete("/articles/2")
+    public void shouldNotFoundArticleToDelete() throws Exception {
+        mvc.perform(delete("/articles/" + notFoundId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
