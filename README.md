@@ -168,7 +168,7 @@ It has **17 integration tests** that ensure the correct functioning of the **API
 
 It has a Postman collection which contains **15 integration tests** that ensure the correct functioning of the **API** once it has been deployed.
 
-![Alt text](https://github.com/alexibro/KairosKUP/blob/master/resources/PostmanTests.png)
+![Alt text](https://github.com/alexibro/KairosKUP/blob/master/resources/PostmanTests.PNG)
 
 ### Continuous Integration [![Build Status](https://travis-ci.com/alexibro/KairosKUP.svg?branch=master)](https://travis-ci.com/alexibro/KairosKUP)
 
@@ -185,5 +185,3 @@ It has a Postman collection which contains **15 integration tests** that ensure 
 ### Sonar [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alexibro_KairosKUP&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexibro_KairosKUP)
 
 **SonarCloud** tool has been used it to clean the code. It helps identifying bugs, vulnerabilities, security hotspots, code smells and technical debt.
-
-
