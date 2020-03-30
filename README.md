@@ -168,6 +168,8 @@ It has **17 integration tests** that ensure the correct functioning of the **API
 
 It has a Postman collection which contains **15 integration tests** that ensure the correct functioning of the **API** once it has been deployed.
 
+*You must disable SSL certificate verification (Setting/General) due to our Sef-signed certificate.
+
 ![Alt text](https://github.com/alexibro/KairosKUP/blob/master/resources/PostmanTests.PNG)
 
 ### Continuous Integration [![Build Status](https://travis-ci.com/alexibro/KairosKUP.svg?branch=master)](https://travis-ci.com/alexibro/KairosKUP)
