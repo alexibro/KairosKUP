@@ -146,7 +146,7 @@ Each API has a **multi-stage Dockerfile**:
 * **Kairoskup (Blog API) service:** Builds image from Dockerfile, exposes and connects it to database and internal network. It depends on database and swearing API. **The parameterized implementation** allows redirect Blog API to Swearing API endpoint inside the container and internal network.
 * **Internat network:** It allows and manages communication between containers.
 
-## Continuous Integration al Delivery - Tests
+## Continuous Integration and Delivery - Tests
 
 ### Tests
 
