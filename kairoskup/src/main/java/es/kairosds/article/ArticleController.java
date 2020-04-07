@@ -28,7 +28,8 @@ public class ArticleController {
     @GET
     @Path("/{id}")
     @ApiOperation(
-            value = "Returns an article"
+            value = "Returns an article",
+            notes = "Returns an article find it by his Id"
     )
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticle(@PathVariable long id) {
